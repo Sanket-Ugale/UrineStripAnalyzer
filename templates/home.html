@@ -1,0 +1,75 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Urine Strip Analyzer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Urine Strip Analyzer</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="imageInput">Upload Urine Strip Image</label>
+                        <input type="file" class="form-control-file" id="imageInput" name="image" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Upload</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-8 offset-md-2">
+                <h2 class="text-center mb-4">Result</h2>
+                <table class="table table-dark table-bordered result-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>RGB Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="result">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#uploadForm').on('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+    
+                $.ajax({
+                    url: '/analyze_strip/',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(result) {
+                        const resultTable = $('#result');
+                        resultTable.empty();
+    
+                        for (const [key, value] of Object.entries(result)) {
+                            const row = $('<tr>').append(
+                                $('<td>').text(key),
+                                $('<td>').text(`[${value.join(', ')}]`)
+                            );
+                            resultTable.append(row);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', errorThrown);
+                        const errorResponse = JSON.parse(jqXHR.responseText);
+                        alert(`Error: ${errorResponse.error}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
