@@ -35,7 +35,7 @@ This project is a web application that allows users to upload an image of their 
 ```
 3. Clone the repository:
 ```shell
-    git clone https://github.com/yourusername/urine-strip-analyzer.git
+    git clone https://github.com/Sanket-Ugale/UrineStripAnalyzer.git
 ```
 
 ```shell
