@@ -62,26 +62,28 @@ Open your web browser and navigate to ```http://127.0.0.1:8000```
 ``` csharp
 urine-strip-analyzer/
 │
-├── urine_analyzer/            # Django project directory
+├── UrineStripAnalyzer/            # Django project directory
+│   ├── __init__.py            # Python package initialization
+│   ├── asgi.py                # ASGI configuration
 │   ├── settings.py            # Django settings
 │   ├── urls.py                # URL configuration
 │   ├── wsgi.py                # WSGI configuration
 │   └── ...
 │
-├── analyzer_app/              # Django app directory
+├── strip_analyzer/              # Django app directory
 │   ├── migrations/            # Database migrations
-│   ├── static/                # Static files (CSS, JavaScript)
-│   ├── templates/             # HTML templates
-│   │   └── index.html         # Upload form template
-│   ├── views.py               # Django views
+│   ├── admin.py               # Django admin configuration
+│   ├── apps.py                # Django app configuration
 │   ├── models.py              # Django models (if any)
+│   ├── tests.py               # Django tests
 │   ├── urls.py                # App-specific URL configuration
+│   ├── views.py               # Django views
 │   └── ...
-│
+├── templates/             # HTML templates
+|   └── home.html         # Upload form template
 ├── manage.py                  # Django management script
 ├── README.md                  # Project README file
 └── requirements.txt           # Python dependencies
-
 
 ```
 
@@ -97,7 +99,7 @@ URLs (```analyzer_app/urls.py```):
 
 Maps the analyze_strip view to the ```/analyze_strip/``` URL.
 Frontend (HTML and JavaScript)
-HTML (templates/index.html):
+HTML (```templates/home.html```):
 
 Provides a form for uploading the image and a script to handle the form submission and display the results.
 
