@@ -60,7 +60,7 @@ Open your web browser and navigate to ```http://127.0.0.1:8000```
 ## Project Structure
 
 ``` csharp
-urine-strip-analyzer/
+UrineStripAnalyzer/
 │
 ├── UrineStripAnalyzer/            # Django project directory
 │   ├── __init__.py            # Python package initialization
