@@ -39,7 +39,7 @@ This project is a web application that allows users to upload an image of their 
 ```
 
 ```shell
-    cd urine-strip-analyzer
+    cd UrineStripAnalyzer
 ```
 4. Install the required dependencies:
 
